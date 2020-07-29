@@ -20,7 +20,7 @@ The goal of the game is to find in how many generations from the initial one to 
 * _A cell that is located on the sides but not on the corners has 5 neighbours._
 
 ### Instructions:
-1. In the beginning of the game the user is prompted to enter the size of the grid. 
+1. In the beginning of the game the user is prompted to enter the size of the grid.
 *If WxH is the dimension of the grid as W - width and H - height, there are the following restrictions:*
 *- W <= H*
 *- H < 1000*
