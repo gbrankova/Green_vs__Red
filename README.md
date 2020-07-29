@@ -1,5 +1,5 @@
 # Green vs Red 
-## _A simple console game implemented in C++_
+### _A simple console game implemented in C++_
 
 ### Description
 Green vs Read is a game that only consists of a 2D grid whose cells could be coloured in either red or green.
