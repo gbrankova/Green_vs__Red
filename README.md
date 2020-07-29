@@ -21,12 +21,14 @@ The goal of the game is to find in how many generations from the initial one to 
 
 ### Instructions:
 1. In the beginning of the game the user is prompted to enter the size of the grid.
+
 *If WxH is the dimension of the grid as W - width and H - height, there are the following restrictions:*
 *- W <= H*
 *- H < 1000*
 2. After that he should enter H lines containing 0 and 1, the initial state - Generation Zero of the grid. 
 3. Lastly, he should enter the coordinates of the cell that the game will examine for being green and a number N which 
 is the generation up to which the game is being played.
+
 *The game calculates Generation Zero and Generation N as well if they meet the condition.*
 4. The result - the number of generations in which the given cell was green - is printed on the console. 
 
