@@ -2,7 +2,7 @@
 ### _A simple console game implemented in C++_
 
 ### Description
-Green vs Read is a game that only consists of a 2D grid whose cells could be coloured in either red or green.
+Green vs Red is a game that only consists of a 2D grid whose cells could be coloured in either red or green.
 In this implementation the colour red is represented by 0 and the colour green by 1. 
 The initial state of the 2D grid or the initial way of colouring the grid is called Generation Zero.
 Each subsequent generation is accomplished using the following 4 rules:
