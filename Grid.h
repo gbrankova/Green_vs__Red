@@ -6,23 +6,21 @@
 #define GREEN_VS_RED_GRID_H
 
 #include <vector>
-#include "GridReader.h"
+#include <iostream>
+#include "GridDimensions.cpp"
+
+using Coordinates = std::pair<int, int>;
 
 class Grid {
 public:
     friend class GridReader;
 
-    int getHeight();
-
-    int getWidth();
-
-    int getGenerationNumber();
-
-    bool getCellValue(int w, int h);
+    bool getCellValue(Coordinates cellCoords);
 
     void getNextGeneration();
 
     void printGrid();
+
 private:
     Grid(Dimensions _gridDimensions, std::vector<std::vector<bool>> _gridData);
 

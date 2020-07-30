@@ -3,6 +3,7 @@
 //
 
 #include "Grid.h"
+#include "GenerationGenerator.h"
 
 Grid::Grid(Dimensions _gridDimensions, std::vector<std::vector<bool>> _gridData) {
     gridDimensions = _gridDimensions;
@@ -10,21 +11,16 @@ Grid::Grid(Dimensions _gridDimensions, std::vector<std::vector<bool>> _gridData)
     generationNumber = 0;
 }
 
-int Grid::getHeight() { return gridDimensions.height; }
-
-int Grid::getWidth() { return gridDimensions.width; }
-
-int Grid::getGenerationNumber() { return generationNumber; }
-
-bool Grid::getCellValue(int w, int h) {
-    return gridData[w][h];
+bool Grid::getCellValue(Coordinates cellCoords) {
+    return gridData[cellCoords.first][cellCoords.second];
 }
 
+
 void Grid::getNextGeneration() {
-    GenerationGenarator generationGenerator = GenerationGenerator(gridData)
-    for(int i = 0; i < gridDimensions.width; i++) {
-        for(int j = 0; j < gridDimensions.height; j++) {
-            gridData[i][j] = generationGenerator.generateCell(i , j);
+    GenerationGenerator generationGenerator = GenerationGenerator(gridData);
+    for(int row = 0; row < gridDimensions.height; row++) {
+        for(int col = 0; col < gridDimensions.width; col++) {
+            gridData[row][col] = generationGenerator.generateCell({row, col});
         }
     }
     generationNumber++;
