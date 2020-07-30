@@ -7,9 +7,25 @@
 
 #include <vector>
 #include <iostream>
-#include "GridDimensions.cpp"
 
 using Coordinates = std::pair<int, int>;
+using TwoDimensionalGrid = std::vector<std::vector<bool>>;
+
+// A simple abstraction for the dimensions of the grid
+struct Dimensions {
+    Dimensions(int _width = 0, int _height = 0) {
+        width = _width;
+        height = _height;
+    }
+
+    int width;
+    int height;
+};
+
+/* An abstraction that contains the 2D grid, its dimensions (width and height) and its current generation.
+ * A Grid object can only be created by a GridReader object which is an abstraction used for reading the data
+ * for the grid from the user. This restriction about who can created instances of the Grid class is accomplished
+ * with a private constructor. */
 
 class Grid {
 public:
@@ -17,14 +33,17 @@ public:
 
     bool getCellValue(Coordinates cellCoords);
 
-    void getNextGeneration();
+    void calculateNextGeneration();
 
+    bool areCoordinatesValid(Coordinates cellCoordinates);
+
+    // TODO : have to be deleted
     void printGrid();
 
 private:
-    Grid(Dimensions _gridDimensions, std::vector<std::vector<bool>> _gridData);
+    Grid(const Dimensions &_gridDimensions, const TwoDimensionalGrid &_gridData);
 
-    std::vector<std::vector<bool>> gridData;
+    TwoDimensionalGrid gridData;
 
     Dimensions gridDimensions;
 

@@ -6,6 +6,5 @@ int main() {
     int result = game.play();
     std::cout << "The result is: " << result << std::endl;
 
-    std::cout << "Hello wordl!" << std::endl;
     return 0;
 }

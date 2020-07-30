@@ -5,7 +5,7 @@
 #include "Grid.h"
 #include "GenerationGenerator.h"
 
-Grid::Grid(Dimensions _gridDimensions, std::vector<std::vector<bool>> _gridData) {
+Grid::Grid(const Dimensions &_gridDimensions, const TwoDimensionalGrid &_gridData) {
     gridDimensions = _gridDimensions;
     gridData = _gridData;
     generationNumber = 0;
@@ -16,7 +16,7 @@ bool Grid::getCellValue(Coordinates cellCoords) {
 }
 
 
-void Grid::getNextGeneration() {
+void Grid::calculateNextGeneration() {
     GenerationGenerator generationGenerator = GenerationGenerator(gridData);
     for(int row = 0; row < gridDimensions.height; row++) {
         for(int col = 0; col < gridDimensions.width; col++) {
@@ -26,9 +26,15 @@ void Grid::getNextGeneration() {
     generationNumber++;
 }
 
+bool Grid::areCoordinatesValid(Coordinates cellCoordinates) {
+    return cellCoordinates.first >= 0 && cellCoordinates.first < gridDimensions.height &&
+           cellCoordinates.second >= 0 && cellCoordinates.second < gridDimensions.width;
+}
+
+// TODO : have to be deleted
 void Grid::printGrid() {
     for(int i = 0; i < gridDimensions.height; i++) {
-        for(int j = 0; j < gridDimensions.width;  j++) {
+        for (int j = 0; j < gridDimensions.width; j++) {
             std::cout << gridData[i][j] << " ";
         }
         std::cout << std::endl;

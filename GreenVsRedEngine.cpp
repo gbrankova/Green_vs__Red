@@ -5,9 +5,10 @@
 #include "GreenVsRedEngine.h"
 #include "GridReader.h"
 
+int guardedStoi(const std::string &numStr, int *num);
+
 GreenVsRedEngine::GreenVsRedEngine() {
-    GridReader reader = GridReader();
-    grid = reader.readGrid();
+    grid = GridReader::readGrid();
     cellCordinates = {-1, -1};
     finalGeneration = 0;
 }
@@ -16,9 +17,11 @@ int GreenVsRedEngine::play() {
     readGameParameters();
 
     int resultCount = grid->getCellValue(cellCordinates);
+    // TODO delete
     grid->printGrid();
     for(int i = 0; i < finalGeneration; i++) {
-        grid->getNextGeneration();
+        grid->calculateNextGeneration();
+        // TODO delete
         grid->printGrid();
         std::cout << std::endl;
         resultCount += grid->getCellValue(cellCordinates);
@@ -31,8 +34,7 @@ void GreenVsRedEngine::readGameParameters() {
     std::vector<std::string> data;
     int conversionResult = -1;
 
-    // isValid??
-    while(conversionResult) {
+    while (conversionResult || !grid->areCoordinatesValid(cellCordinates)) {
         std::cout << "Please enter R, C, G where R and C are the row and the column "
                      "where the cell is located and G is the generation up to which the game is played: ";
         std::getline(std::cin, inputData);
@@ -68,23 +70,4 @@ std::vector<std::string> GreenVsRedEngine::split(std::string data) {
 
 GreenVsRedEngine::~GreenVsRedEngine() {
     delete grid;
-}
-
-int GreenVsRedEngine::guardedStoi(std::string numStr, int *num) {
-    try {
-        *num = std::stoi(numStr);
-        return 0;
-    } catch (const std::invalid_argument& ia) {
-        std::cout << "Invalid number: " << numStr << std::endl;
-        std::cout << "Try again!" << std::endl;
-        return -1;
-    } catch (const std::out_of_range& oor) {
-        std::cout << "Number out of range: " << numStr << std::endl;
-        std::cout << "Try again!" << std::endl;
-        return -1;
-    } catch (const std::exception& e) {
-        std::cout << "Unidentified error with number: " << numStr << std::endl;
-        std::cout << "Try again!" << std::endl;
-        return -1;
-    }
 }
