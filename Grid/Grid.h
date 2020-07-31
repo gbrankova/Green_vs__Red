@@ -1,7 +1,3 @@
-//
-// Created by Gabriela Brankova on 2020-07-29.
-//
-
 #ifndef GREEN_VS_RED_GRID_H
 #define GREEN_VS_RED_GRID_H
 

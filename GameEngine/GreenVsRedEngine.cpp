@@ -1,7 +1,3 @@
-//
-// Created by Gabriela Brankova on 2020-07-30.
-//
-
 #include "GreenVsRedEngine.h"
 #include "../Grid/GridReader.h"
 

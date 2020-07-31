@@ -1,7 +1,3 @@
-//
-// Created by Gabriela Brankova on 2020-07-30.
-//
-
 #ifndef GREEN_VS_RED_GENERATIONGENERATOR_H
 #define GREEN_VS_RED_GENERATIONGENERATOR_H
 

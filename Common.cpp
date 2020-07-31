@@ -1,7 +1,3 @@
-//
-// Created by Gabriela Brankova on 2020-07-30.
-//
-
 #include <iostream>
 
 int guardedStoi(const std::string &numStr, int *num) {
