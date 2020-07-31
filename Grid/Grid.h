@@ -22,32 +22,34 @@ struct Dimensions {
     int height;
 };
 
-/* An abstraction that contains the 2D grid, its dimensions (width and height) and its current generation.
- * A Grid object can only be created by a GridReader object which is an abstraction used for reading the data
- * for the grid from the user. This restriction about who can created instances of the Grid class is accomplished
- * with a private constructor. */
+/*
+ * An abstraction that contains the 2D grid, its dimensions (width and height) and its current generation.
+ * A Grid object can only be created by the GridReader class which is an abstraction used for reading the data
+ * for a grid from the user. This restriction about who can created instances of the Grid class is accomplished
+ * with a private constructor.
+ *
+ * */
 
 class Grid {
 public:
-    friend class GridReader;
 
-    bool getCellValue(Coordinates cellCoords);
+    friend class GridReader;
 
     void calculateNextGeneration();
 
-    bool areCoordinatesValid(Coordinates cellCoordinates);
+    bool getCellValue(const Coordinates &cellCoordinates);
 
-    // TODO : have to be deleted
-    void printGrid();
+    bool areCoordinatesValid(const Coordinates &cellCoordinates);
 
 private:
+
     Grid(const Dimensions &_gridDimensions, const TwoDimensionalGrid &_gridData);
 
     TwoDimensionalGrid gridData;
 
     Dimensions gridDimensions;
 
-    int generationNumber;
+    int gridGeneration;
 };
 
 #endif //GREEN_VS_RED_GRID_H

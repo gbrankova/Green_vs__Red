@@ -19,9 +19,10 @@ std::vector<std::vector<bool>> GridReader::readGridData(int height) {
     std::cout << "Please enter Generation Zero of the 2D grid: " << std::endl;
     for (int row = 0; row < height; row++) {
         std::cout << "Row #" << row << ": ";
-        std::vector<bool> rowData;
         std::getline(std::cin, rowDataStr);
         std::istringstream rowDataStream(rowDataStr);
+
+        std::vector<bool> rowData;
         while (rowDataStream >> cellData) {
             rowData.push_back(cellData != "0");
         }
@@ -37,9 +38,10 @@ Dimensions GridReader::readDimensions() {
     int width = 1;
     int height = 0;
 
-    while (conversionResult || width > height || height >= 1000) {
+    //If the dimensions of the grid are not valid, the user is prompted to enter them again.
+    while (conversionResult || width > height || height >= 1000 || width <= 0 || height <= 0) {
         std::cout << "Please enter the dimensions of the 2D grid "
-                     "(format: W, H where W - width, H - height, W <= H and H < 1000): ";
+                     "(format: W, H where W - width, H - height, W <= H, H < 1000, W > 0 and H > 0): ";
         std::getline(std::cin, dimensions);
         dimensionsStr = splitDimensions(dimensions);
         conversionResult = guardedStoi(dimensionsStr.first, &width);
@@ -49,7 +51,7 @@ Dimensions GridReader::readDimensions() {
     return {width, height};
 }
 
-std::pair<std::string, std::string> GridReader::splitDimensions(std::string dimensions) {
+std::pair<std::string, std::string> GridReader::splitDimensions(const std::string &dimensions) {
     unsigned long delimiterPos = dimensions.find(", ");
     return {dimensions.substr(0, delimiterPos), dimensions.substr(delimiterPos + 2)};
 }

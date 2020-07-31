@@ -1,5 +1,5 @@
 #include <iostream>
-#include "GreenVsRedEngine.h"
+#include "GameEngine/GreenVsRedEngine.h"
 
 int main() {
     GreenVsRedEngine game = GreenVsRedEngine();

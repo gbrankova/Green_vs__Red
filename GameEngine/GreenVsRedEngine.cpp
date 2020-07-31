@@ -3,28 +3,23 @@
 //
 
 #include "GreenVsRedEngine.h"
-#include "GridReader.h"
+#include "../Grid/GridReader.h"
 
 int guardedStoi(const std::string &numStr, int *num);
 
 GreenVsRedEngine::GreenVsRedEngine() {
     grid = GridReader::readGrid();
-    cellCordinates = {-1, -1};
+    cellCoordinates = {-1, -1};
     finalGeneration = 0;
 }
 
 int GreenVsRedEngine::play() {
     readGameParameters();
 
-    int resultCount = grid->getCellValue(cellCordinates);
-    // TODO delete
-    grid->printGrid();
-    for(int i = 0; i < finalGeneration; i++) {
+    int resultCount = grid->getCellValue(cellCoordinates);
+    for (int i = 0; i < finalGeneration; i++) {
         grid->calculateNextGeneration();
-        // TODO delete
-        grid->printGrid();
-        std::cout << std::endl;
-        resultCount += grid->getCellValue(cellCordinates);
+        resultCount += grid->getCellValue(cellCoordinates);
     }
     return resultCount;
 }
@@ -34,14 +29,19 @@ void GreenVsRedEngine::readGameParameters() {
     std::vector<std::string> data;
     int conversionResult = -1;
 
-    while (conversionResult || !grid->areCoordinatesValid(cellCordinates)) {
+    /*
+     * If game parameters (the coordinates of the cell and the generation number)
+     * are not valid the user is prompted to enter them again.
+     *
+     * */
+    while (conversionResult || !grid->areCoordinatesValid(cellCoordinates)) {
         std::cout << "Please enter R, C, G where R and C are the row and the column "
                      "where the cell is located and G is the generation up to which the game is played: ";
         std::getline(std::cin, inputData);
         data = split(inputData);
-        if(data.size() == 3) {
-            conversionResult = guardedStoi(data[0], &cellCordinates.second);
-            conversionResult = conversionResult ? conversionResult : guardedStoi(data[1], &cellCordinates.first);
+        if (data.size() == 3) {
+            conversionResult = guardedStoi(data[0], &cellCoordinates.second);
+            conversionResult = conversionResult ? conversionResult : guardedStoi(data[1], &cellCoordinates.first);
             conversionResult = conversionResult ? conversionResult : guardedStoi(data[2], &finalGeneration);
         }
     }

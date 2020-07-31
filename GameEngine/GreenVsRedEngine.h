@@ -5,14 +5,18 @@
 #ifndef GREEN_VS_RED_GREENVSREDENGINE_H
 #define GREEN_VS_RED_GREENVSREDENGINE_H
 
-#include "Grid.h"
+#include "../Grid/Grid.h"
 
-/* The class that drives the whole game. It contains a particular Grid object, the coordinates
+/*
+ * The class that drives the whole game. It contains a particular Grid object, the coordinates
  * of the cell in the grid we are examining for being green and the final generation up to
- * which the game is being played. */
+ * which the game is being played.
+ *
+ * */
 
 class GreenVsRedEngine {
 public:
+
     GreenVsRedEngine();
 
     int play();
@@ -20,13 +24,14 @@ public:
     ~GreenVsRedEngine();
 
 private:
-    std::vector<std::string> split(std::string data);
 
     void readGameParameters();
 
+    std::vector<std::string> split(std::string data);
+
     Grid *grid;
 
-    Coordinates cellCordinates;
+    Coordinates cellCoordinates;
 
     int finalGeneration;
 };

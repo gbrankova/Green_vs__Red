@@ -8,7 +8,7 @@ GenerationGenerator::GenerationGenerator(const TwoDimensionalGrid &_currentGridD
     gridData = _currentGridData;
 }
 
-bool GenerationGenerator::generateCell(Coordinates cellCoordinates) {
+bool GenerationGenerator::generateCell(const Coordinates &cellCoordinates) {
     int greenNeighboursCount = countGreenNeighbours(cellCoordinates);
 
     if (gridData[cellCoordinates.first][cellCoordinates.second]) {
@@ -20,7 +20,7 @@ bool GenerationGenerator::generateCell(Coordinates cellCoordinates) {
     }
 }
 
-int GenerationGenerator::countGreenNeighbours(Coordinates cellCoordinates) {
+int GenerationGenerator::countGreenNeighbours(const Coordinates &cellCoordinates) {
     unsigned long maxRowIndex = gridData.size() - 1;
     unsigned long maxColumnIndex = gridData[1].size() - 1;
     int greenNeighboursCount = 0;
